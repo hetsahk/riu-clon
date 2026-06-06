@@ -1,13 +1,33 @@
-<div class="relative w-full aspect-[1/1.1] rounded-lg overflow-hidden group">
-    <img [src]="imageUrl" class="absolute size-full object-cover transition ease-in-out duration-800 group-hover:scale-125" />
-    <div class="absolute inset-0 bg-linear-to-t from-black/50 to-transparent pointer-events-none"></div>
-    <div class="absolute flex gap-2 top-4 left-4">
-        @for (tag of tags; track tag) {
-        <span class="rounded-full px-2.5 py-1.5 text-xs font-semibold text-[#353B41] bg-white shadow-lg">{{ tag }}</span>
-        }
-    </div> 
-    <div class="absolute w-full p-5 top-1/2 left-1/2 -translate-1/2 text-white drop-shadow-lg flex gap-7 flex-col text-center">
-        <h2 class="text-4xl font-bold">{{name}}</h2>
-        <p class="text-2xl">desde {{price | number:'1.0-0' }} ARS</p>
-    </div>
-</div>
+<button
+  type="button"
+  (click)="toggleFavorite()"
+  [attr.aria-pressed]="isFavorite()"
+  class="block relative w-full aspect-[1/1.1] rounded-lg overflow-hidden group text-left"
+>
+  <img
+    [src]="imageUrl()"
+    class="absolute top-0 size-full object-cover transition ease-in-out duration-800 group-hover:scale-125"
+  />
+  <div
+    class="absolute inset-0 bg-linear-to-t from-black/50 to-transparent pointer-events-none"
+  ></div>
+  <div class="absolute flex gap-2 top-4 left-4">
+    @for (tag of tags(); track tag) {
+      <span
+        class="rounded-full px-2.5 py-1.5 text-xs font-semibold text-[#353B41] bg-white shadow-lg"
+        >{{ tag }}</span
+      >
+    }
+  </div>
+  <span
+    class="absolute top-4 right-4 grid place-items-center size-10 rounded-full bg-white/90 shadow-lg text-xl"
+  >
+    {{ isFavorite() ? '❤️' : '🤍' }}
+  </span>
+  <div
+    class="absolute w-full p-5 top-1/2 left-1/2 -translate-1/2 text-white drop-shadow-lg flex gap-7 flex-col text-center"
+  >
+    <h2 class="text-4xl font-bold">{{ name() }}</h2>
+    <p class="text-2xl">desde {{ price() | number: '1.0-0' }} ARS</p>
+  </div>
+</button>

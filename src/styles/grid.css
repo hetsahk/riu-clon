@@ -1,0 +1,119 @@
+/* ============================================================
+   Grid object — 12 columns, flex-wrap, gap-aware
+   ------------------------------------------------------------
+   Usage:
+     <div class="o-grid">
+       <div class="o-grid__item u-12/12 u-6/12@sm u-4/12@md">...</div>
+     </div>
+
+   - o-grid        -> the flex container (structure)
+   - o-grid__item  -> a column; computes its own width
+   - u-N/12        -> sets how many of 12 columns the item spans
+
+   Breakpoint suffixes on the u-* classes:
+   - no suffix             -> applies from mobile up (base)
+   - @sm / @md / @lg / @xl -> overrides from that breakpoint up
+   - Mobile-first: larger breakpoints override smaller ones.
+
+   Gap: 24px on mobile, 32px from md (768px) up.
+   ============================================================ */
+
+.o-grid {
+  display: flex;
+  flex-wrap: wrap;
+  --grid-gap: 24px;
+  gap: var(--grid-gap);
+}
+
+@media (min-width: 768px) {
+  .o-grid {
+    --grid-gap: 32px;
+  }
+}
+
+/* The width formula lives in ONE place.
+   Each item only declares how many of 12 columns it spans (--u).
+   width = (span/12 * 100%) - gap * (12 - span)/12
+   This subtracts the gap proportionally so columns fit exactly. */
+.o-grid__item {
+  --u: 12; /* fallback: full width */
+  width: calc(var(--u) / 12 * 100% - var(--grid-gap) * (12 - var(--u)) / 12);
+}
+
+/* --- Base spans (mobile up) --- */
+.u-1\/12  { --u: 1; }
+.u-2\/12  { --u: 2; }
+.u-3\/12  { --u: 3; }
+.u-4\/12  { --u: 4; }
+.u-5\/12  { --u: 5; }
+.u-6\/12  { --u: 6; }
+.u-7\/12  { --u: 7; }
+.u-8\/12  { --u: 8; }
+.u-9\/12  { --u: 9; }
+.u-10\/12 { --u: 10; }
+.u-11\/12 { --u: 11; }
+.u-12\/12 { --u: 12; }
+
+/* --- @sm (640px) --- */
+@media (min-width: 640px) {
+  .u-1\/12\@sm  { --u: 1; }
+  .u-2\/12\@sm  { --u: 2; }
+  .u-3\/12\@sm  { --u: 3; }
+  .u-4\/12\@sm  { --u: 4; }
+  .u-5\/12\@sm  { --u: 5; }
+  .u-6\/12\@sm  { --u: 6; }
+  .u-7\/12\@sm  { --u: 7; }
+  .u-8\/12\@sm  { --u: 8; }
+  .u-9\/12\@sm  { --u: 9; }
+  .u-10\/12\@sm { --u: 10; }
+  .u-11\/12\@sm { --u: 11; }
+  .u-12\/12\@sm { --u: 12; }
+}
+
+/* --- @md (768px) --- */
+@media (min-width: 768px) {
+  .u-1\/12\@md  { --u: 1; }
+  .u-2\/12\@md  { --u: 2; }
+  .u-3\/12\@md  { --u: 3; }
+  .u-4\/12\@md  { --u: 4; }
+  .u-5\/12\@md  { --u: 5; }
+  .u-6\/12\@md  { --u: 6; }
+  .u-7\/12\@md  { --u: 7; }
+  .u-8\/12\@md  { --u: 8; }
+  .u-9\/12\@md  { --u: 9; }
+  .u-10\/12\@md { --u: 10; }
+  .u-11\/12\@md { --u: 11; }
+  .u-12\/12\@md { --u: 12; }
+}
+
+/* --- @lg (1024px) --- */
+@media (min-width: 1024px) {
+  .u-1\/12\@lg  { --u: 1; }
+  .u-2\/12\@lg  { --u: 2; }
+  .u-3\/12\@lg  { --u: 3; }
+  .u-4\/12\@lg  { --u: 4; }
+  .u-5\/12\@lg  { --u: 5; }
+  .u-6\/12\@lg  { --u: 6; }
+  .u-7\/12\@lg  { --u: 7; }
+  .u-8\/12\@lg  { --u: 8; }
+  .u-9\/12\@lg  { --u: 9; }
+  .u-10\/12\@lg { --u: 10; }
+  .u-11\/12\@lg { --u: 11; }
+  .u-12\/12\@lg { --u: 12; }
+}
+
+/* --- @xl (1280px) --- */
+@media (min-width: 1280px) {
+  .u-1\/12\@xl  { --u: 1; }
+  .u-2\/12\@xl  { --u: 2; }
+  .u-3\/12\@xl  { --u: 3; }
+  .u-4\/12\@xl  { --u: 4; }
+  .u-5\/12\@xl  { --u: 5; }
+  .u-6\/12\@xl  { --u: 6; }
+  .u-7\/12\@xl  { --u: 7; }
+  .u-8\/12\@xl  { --u: 8; }
+  .u-9\/12\@xl  { --u: 9; }
+  .u-10\/12\@xl { --u: 10; }
+  .u-11\/12\@xl { --u: 11; }
+  .u-12\/12\@xl { --u: 12; }
+}
