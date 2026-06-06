@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+* {
+  font-family: 'Inter', sans-serif;
+}
+
+@layer base {
+  button {
+    cursor: pointer;
+  }
+}
